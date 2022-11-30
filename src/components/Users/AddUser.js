@@ -3,6 +3,7 @@ import Card from '../UI/Card';
 import classes from './AddUser.module.css';
 import Button from '../UI/Button';
 import ErrorModal from '../UI/ErrorModal';
+import Wrapper from '../Helpers/Wrapper';
 
 const AddUser = (props) => {
     const [username, setUsername] = useState('');
@@ -38,8 +39,10 @@ const AddUser = (props) => {
         setError(null);
     }
 
+    //<Wrapper> is used to prevent unnecesary empty <div>s, if this happens this is called "div soup"
+    //<Wrapper> simply returns the children passed to it without the need of rendering an additional <div>
     return (
-        <div>
+        <Wrapper>
             {error && 
                 <ErrorModal 
                     title={error.title} 
@@ -55,7 +58,7 @@ const AddUser = (props) => {
                     <Button type='submit'>Add User</Button>
                 </form>
             </Card>
-        </div>
+        </Wrapper>
     );
 }
 
