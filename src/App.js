@@ -9,10 +9,13 @@ function App() {
   }
 
   return (
-    <div>
+    <>
+    {/* <React.Fragment> = <> Fragments does not return any html
+    this is also used to write cleaner html code.*/}
       <AddUser onAddUser={addUserHandler}/>
       <UsersList users={usersList}/>
-    </div>
+    {/* <Wrapper/> */}
+    </>
   );
 }
 
