@@ -2,23 +2,34 @@ import React from "react"
 import Card from "./Card";
 import Button from "./Button";
 import styled from "styled-components";
+import ReactDOM from "react-dom";
+
+const ModalOverlay = props => {
+  return <StyledCard>
+    <StyledHeader>
+      <HeaderText>{props.title}</HeaderText>
+    </StyledHeader>
+      <Content>
+        <p>{props.message}</p>
+      </Content>
+    <Footer>
+      <Button onClick={props.onConfirm}>Okay</Button>
+    </Footer>
+  </StyledCard>
+};
 
 const ErrorModal = (props) => {
   return (
-    <div>
-      <Backdrop onClick={props.onConfirm}/>
-      <StyledCard>
-        <StyledHeader>
-          <HeaderText>{props.title}</HeaderText>
-        </StyledHeader>
-          <Content>
-            <p>{props.message}</p>
-          </Content>
-        <Footer>
-          <Button onClick={props.onConfirm}>Okay</Button>
-        </Footer>
-      </StyledCard>
-    </div>
+    <>
+      {ReactDOM.createPortal(
+        <Backdrop onConfirm={props.onConfirm}/>, 
+        document.getElementById('backdrop-root')
+      )}
+      {ReactDOM.createPortal(
+        <ModalOverlay onConfirm={props.onConfirm}/>, 
+        document.getElementById('overlay-root')
+      )}
+    </>
   )
 };
 
