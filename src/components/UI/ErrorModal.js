@@ -22,11 +22,11 @@ const ErrorModal = (props) => {
   return (
     <>
       {ReactDOM.createPortal(
-        <Backdrop onConfirm={props.onConfirm}/>, 
+        <Backdrop onClick={props.onConfirm}/>, 
         document.getElementById('backdrop-root')
       )}
       {ReactDOM.createPortal(
-        <ModalOverlay onConfirm={props.onConfirm}/>, 
+        <ModalOverlay onClick={props.onConfirm}/>, 
         document.getElementById('overlay-root')
       )}
     </>
